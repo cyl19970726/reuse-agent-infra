@@ -1,0 +1,4 @@
+interface:
+  display_name: "Session Forensics"
+  short_description: "Audit agent histories across Codex, Claude, and Kimi"
+  default_prompt: "Use $session-forensics to audit this agent session from the evidence stream and recommend the next action."

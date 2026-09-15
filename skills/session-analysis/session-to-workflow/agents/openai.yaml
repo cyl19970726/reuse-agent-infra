@@ -1,0 +1,3 @@
+interface:
+  display_name: "从历史构建工作流"
+  short_description: "从会话历史提炼阶段、步骤、资产与流程，形成可验证的工作流报告"

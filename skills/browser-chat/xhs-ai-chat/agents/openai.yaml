@@ -1,0 +1,6 @@
+interface:
+  display_name: "小红书点点多轮聊天"
+  short_description: "通过 Ego 浏览器与小红书点点持续多轮对话并提取回复"
+  default_prompt: "使用 $xhs-ai-chat 向小红书点点提问，并在同一会话中继续追问。"
+policy:
+  allow_implicit_invocation: true

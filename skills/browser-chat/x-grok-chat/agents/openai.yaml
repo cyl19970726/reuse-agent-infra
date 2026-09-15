@@ -1,0 +1,6 @@
+interface:
+  display_name: "X Grok 多轮聊天"
+  short_description: "通过 Ego 浏览器与 X Grok 多轮对话并完整提取 X 原帖及全部引用"
+  default_prompt: "使用 $x-grok-chat 向 X 上的 Grok 提问，并在同一会话中继续追问。"
+policy:
+  allow_implicit_invocation: true
