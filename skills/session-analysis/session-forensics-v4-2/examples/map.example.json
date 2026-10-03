@@ -1,0 +1,577 @@
+{
+ "schema": "task-map/1.2",
+ "title": "书架：从 CSV 导入书单",
+ "subject": "合成示例（虚构的小项目会话）",
+ "question": "看下书架导入那个会话做到哪了，下一步该干嘛。我最在意的是导入不能产生重复的书。",
+ "updated": "2026-09-28T03:20:00Z",
+ "tier": "solo",
+ "answer": {
+  "type": "progress",
+  "lead": "解析和去重做完了，测试 4 个全过，但没有一个测试导入重复的书；页面按 agent 猜的流程改了，你还没确认，浏览器里也没人看过。现在停在等你定预览列。",
+  "points": [
+   {
+    "label": "主线",
+    "text": "解析和去重跟着计划走完；页面这一步停下来等你拍板。",
+    "refs": [
+     "A:37"
+    ]
+   },
+   {
+    "label": "去重（你最在意的）",
+    "text": "规则按你答的写进了导入（有 ISBN 按 ISBN，没有的按书名 + 作者）；只改了导入代码和导入页，表结构没动；现有 4 个测试里没有一个导入重复的书。",
+    "refs": [
+     "A:23",
+     "A:24",
+     "A:31",
+     "site:1"
+    ]
+   },
+   {
+    "label": "第一件事",
+    "text": "你回答两件事：导入流程是不是「上传 → 预览 → 确认」，预览表显示哪些列。答完再让它做「确认导入」。",
+    "refs": [
+     "A:30",
+     "A:37"
+    ]
+   },
+   {
+    "label": "现场核对",
+    "text": "测试重跑 4 个全过，其中没有测重复的书；导入页现场没法看，会话里只拿到状态码 200，页面内容没人在浏览器里看过。",
+    "refs": [
+     "site:1",
+     "site:2"
+    ]
+   }
+  ],
+  "missing": [
+   "去重没有测试：4 个测试测的是 UTF-8、GBK、日期、空行，没有一个导入重复的书。",
+   "页面没在浏览器里看过：agent 自己说还没验证，之后只请求了接口状态码。"
+  ]
+ },
+ "sessions": [
+  {
+   "alias": "A",
+   "path": "synthetic/session.jsonl",
+   "platform": "claude_code",
+   "when": "09-28 09:02 → 10:14",
+   "ledger_through": 37,
+   "read": "A:1-37（全部）",
+   "state": "DONE",
+   "note": "给书架加 CSV 导入：解析、去重、导入页"
+  },
+  {
+   "alias": "O",
+   "path": "synthetic/origin.jsonl",
+   "platform": "claude_code",
+   "when": "09-28 11:10",
+   "role": "origin",
+   "ledger_through": 2,
+   "read": "O:1-2",
+   "state": "",
+   "note": "你发起这次查看"
+  }
+ ],
+ "origin": [
+  {
+   "id": "I1",
+   "at": "O:1",
+   "quote": "看下书架导入那个会话做到哪了，下一步该干嘛。我最在意的是导入不能产生重复的书。",
+   "use": "定了要回答的问题（进度 + 下一步），也给了原则：不能产生重复"
+  }
+ ],
+ "headline": {
+  "alignment": {
+   "state": "waiting",
+   "text": "解析和去重按计划做完；页面这一步停在等你定预览列。",
+   "refs": [
+    "A:37"
+   ]
+  },
+  "want": {
+   "text": "把已有书单从 CSV 一次搬进书架：不改数据库表结构，不产生重复的书。",
+   "refs": [
+    "A:1",
+    "O:1"
+   ]
+  },
+  "progress": {
+   "text": "解析、去重做完，测试 4 个全过（现场重跑过）；页面改成三步，但没在浏览器里看过。",
+   "refs": [
+    "A:27",
+    "site:1"
+   ]
+  },
+  "problem": {
+   "text": "页面流程是 agent 推断的：你让它先搞清楚你要的流程，它复述一句就动手改了，没等你确认。",
+   "refs": [
+    "A:29",
+    "A:30"
+   ]
+  },
+  "next": {
+   "text": "你确认流程和预览列，然后做「确认导入」，并在浏览器里走一遍。",
+   "refs": [
+    "A:37"
+   ]
+  }
+ },
+ "requests": [
+  {
+   "id": "R1",
+   "at": "A:1",
+   "quote": "给书架小应用加一个从 CSV 导入书单的功能。原则：不要改现有的数据库表结构。先给我计划再动手。",
+   "kind": "request",
+   "goal": "G1",
+   "also": [
+    "A:3"
+   ],
+   "also_ids": [
+    "R2"
+   ]
+  },
+  {
+   "id": "R3",
+   "at": "A:20",
+   "quote": "别光修解析了，先确认一下：导入时要不要去重？",
+   "kind": "interjection",
+   "goal": "G2",
+   "status": "done",
+   "basis_text": "agent 停下来问了去重规则，按你的回答实现，测试通过",
+   "basis_refs": [
+    "A:21",
+    "A:24",
+    "A:27"
+   ]
+  },
+  {
+   "id": "R4",
+   "at": "A:23",
+   "quote": "按 ISBN，没有 ISBN 的按书名+作者",
+   "kind": "answer",
+   "goal": "G2",
+   "status": "done",
+   "basis_text": "去重按这个规则写进了导入",
+   "basis_refs": [
+    "A:24"
+   ]
+  },
+  {
+   "id": "R5",
+   "at": "A:29",
+   "quote": "页面我打开是空白的。你先搞清楚我要的导入流程是什么样的，再改页面。",
+   "kind": "correction",
+   "clarify": true,
+   "goal": "G3",
+   "status": "partial",
+   "basis_text": "agent 复述了一个流程就改页面，你没确认过",
+   "basis_refs": [
+    "A:30"
+   ],
+   "also": [
+    "A:34"
+   ],
+   "also_ids": [
+    "R6"
+   ]
+  }
+ ],
+ "goals": [
+  {
+   "id": "G1",
+   "level": "purpose",
+   "text": "把已有书单一次搬进书架，不产生重复的书",
+   "requests": [
+    "R1"
+   ],
+   "from": "said",
+   "status": "partial",
+   "refs": [
+    "O:1",
+    "file:.claude/skills/shelf-import/SKILL.md:6"
+   ],
+   "ai": {
+    "text": "把导入当成解析问题：先让解析测试全绿",
+    "refs": [
+     "A:2",
+     "A:10",
+     "A:15"
+    ],
+    "gap": "你最在意的是不重复，计划里却没有去重，直到你插话才提出来"
+   },
+   "note": "「不产生重复」你在发起查看时说过；项目的导入 skill 里也写着同一条长期原则"
+  },
+  {
+   "id": "G2",
+   "level": "stage",
+   "text": "导入去重：按 ISBN，没有 ISBN 的按书名 + 作者",
+   "requests": [
+    "R3",
+    "R4"
+   ],
+   "from": "confirmed",
+   "confirm_refs": [
+    "A:23"
+   ],
+   "status": "done"
+  },
+  {
+   "id": "G3",
+   "level": "stage",
+   "text": "导入页流程：上传 → 预览 → 确认导入",
+   "requests": [
+    "R5"
+   ],
+   "from": "inferred",
+   "status": "partial",
+   "ask": "导入流程就是「上传 → 预览 → 确认导入」吗？",
+   "ai": {
+    "text": "把「先搞清楚流程」当成自己复述一遍就算清楚",
+    "refs": [
+     "A:30"
+    ],
+    "gap": "你要的是先确认，不是复述"
+   }
+  }
+ ],
+ "plan": {
+  "refs": [
+   "A:2",
+   "A:3"
+  ],
+  "note": "agent 在第一条请求后给的三步计划，你回了「可以」；去重是你插话后加的一步。",
+  "steps": [
+   {
+    "id": "K1",
+    "do": "写 CSV 解析",
+    "goal": "G1",
+    "state": "done",
+    "via": [
+     "S1",
+     "S2",
+     "S3"
+    ]
+   },
+   {
+    "id": "K4",
+    "do": "按你定的规则去重（插话后加的）",
+    "goal": "G2",
+    "state": "done",
+    "via": [
+     "S4"
+    ]
+   },
+   {
+    "id": "K3",
+    "do": "给导入加测试",
+    "goal": "G1",
+    "state": "done",
+    "via": [
+     "S4"
+    ]
+   },
+   {
+    "id": "K2",
+    "do": "接到导入页",
+    "goal": "G3",
+    "state": "waiting",
+    "via": [
+     "S5",
+     "S6"
+    ]
+   }
+  ],
+  "now": "K2"
+ },
+ "layers": [
+  "解析",
+  "去重",
+  "页面"
+ ],
+ "process": [
+  {
+   "id": "S1",
+   "span": "A:4-9",
+   "layer": "解析",
+   "title": "写解析器",
+   "did": "读数据模型，写 importer.py，跑测试",
+   "output": "importer.py 初版",
+   "result": "测试卡在 GBK 编码",
+   "problems": [
+    "P1"
+   ],
+   "refs": [
+    "A:9"
+   ]
+  },
+  {
+   "id": "S2",
+   "span": "A:10-14",
+   "layer": "解析",
+   "title": "改成先探测编码",
+   "did": "改打开文件的方式",
+   "output": "编码探测",
+   "result": "测试卡在日期格式",
+   "problems": [
+    "P1"
+   ],
+   "refs": [
+    "A:14"
+   ]
+  },
+  {
+   "id": "S3",
+   "span": "A:15-19",
+   "layer": "解析",
+   "title": "加日期格式列表",
+   "did": "逐个格式试",
+   "output": "日期解析",
+   "result": "测试卡在空行",
+   "problems": [
+    "P1"
+   ],
+   "refs": [
+    "A:19"
+   ]
+  },
+  {
+   "id": "S4",
+   "span": "A:20-27",
+   "layer": "去重",
+   "title": "停下问去重规则，按回答实现",
+   "did": "你插话后问规则，写去重",
+   "output": "去重",
+   "result": "测试 4 个全过",
+   "problems": [
+    "P3"
+   ],
+   "refs": [
+    "A:27"
+   ]
+  },
+  {
+   "id": "S5",
+   "span": "A:28-33",
+   "layer": "页面",
+   "title": "按自己推断的流程改导入页",
+   "did": "你说页面空白、先搞清楚流程；它复述一句就改了模板",
+   "output": "三步表单",
+   "result": "没在浏览器里看过",
+   "problems": [
+    "P2"
+   ],
+   "refs": [
+    "A:31"
+   ]
+  },
+  {
+   "id": "S6",
+   "span": "A:34-37",
+   "layer": "页面",
+   "title": "起服务核接口，停下等你定预览列",
+   "did": "起服务，请求导入页",
+   "output": "—",
+   "result": "接口 200；等你拍板",
+   "refs": [
+    "A:36"
+   ]
+  }
+ ],
+ "assets": [
+  {
+   "id": "X1",
+   "what": "导入逻辑（解析 + 去重）",
+   "path": "shelf/importer.py",
+   "status": "current",
+   "refs": [
+    "A:6",
+    "A:24"
+   ]
+  },
+  {
+   "id": "X2",
+   "what": "导入页模板（上传 / 预览 / 确认）",
+   "path": "templates/import.html",
+   "status": "current",
+   "note": "流程未经你确认，没在浏览器里看过",
+   "refs": [
+    "A:31"
+   ]
+  },
+  {
+   "id": "X3",
+   "what": "导入测试",
+   "path": "tests/test_importer.py",
+   "status": "current",
+   "note": "4 个通过：UTF-8、GBK、日期、空行；没有测去重的",
+   "refs": [
+    "A:27",
+    "site:1"
+   ]
+  }
+ ],
+ "problems": [
+  {
+   "id": "P2",
+   "title": "页面流程是推断的，没等你确认",
+   "symptom": "你说「先搞清楚我要的导入流程」，agent 复述一句就改了页面",
+   "root": "把「弄清你的意图」当成自己能回答的事；这类请求只有你确认了才算闭合",
+   "root_kind": "judgment",
+   "refs": [
+    "A:29",
+    "A:30"
+   ],
+   "resolved": "no"
+  },
+  {
+   "id": "P1",
+   "title": "解析测试连着失败三次",
+   "symptom": "GBK 编码、日期格式、空行，三轮各卡在一个新错误",
+   "root": "没先看一份导出样本就写解析，格式问题只能一个个撞出来",
+   "root_kind": "judgment",
+   "refs": [
+    "A:9",
+    "A:14",
+    "A:19",
+    "file:.claude/skills/shelf-import/SKILL.md:10"
+   ],
+   "resolved": "partial",
+   "not_spin": "三次失败是三个不同的错误，每次修掉一个就往前推一步，不是在原地打转"
+  },
+  {
+   "id": "P3",
+   "title": "去重到你插话才问",
+   "symptom": "计划里没有去重，三轮都在修解析",
+   "root": "计划只拆了技术步骤，没从「不能重复」这个要求倒推",
+   "root_kind": "judgment",
+   "refs": [
+    "A:2",
+    "A:20"
+   ],
+   "resolved": "yes"
+  }
+ ],
+ "collab": {
+  "user": [
+   {
+    "text": "最在意的「不能重复」没写在第一条消息里",
+    "refs": [
+     "A:1",
+     "O:1"
+    ],
+    "better": "第一条就写上：不能产生重复，按什么判重"
+   }
+  ],
+  "agent": [
+   {
+    "text": "列计划时没问去重；你让它先搞清楚流程，它没等你确认就动手",
+    "refs": [
+     "A:2",
+     "A:30"
+    ],
+    "better": "列计划时问一句要不要去重；把推断的流程发给你确认后再改页面"
+   }
+  ]
+ },
+ "next": [
+  {
+   "do": "你确认导入流程和预览表的列",
+   "for": [
+    "G3",
+    "P2"
+   ]
+  },
+  {
+   "do": "做「确认导入」这一步，并在浏览器里走一遍上传 → 预览 → 确认",
+   "for": [
+    "G3",
+    "R6"
+   ]
+  },
+  {
+   "do": "补一个测试：同一份文件导两次，书不变多",
+   "for": [
+    "G1"
+   ]
+  }
+ ],
+ "questions": [
+  {
+   "q": "导入流程就是「上传 → 预览 → 确认导入」吗？",
+   "why": "页面已按这个流程改了，但它是 agent 推断的",
+   "default": "按这个流程继续，只补「确认导入」",
+   "for": [
+    "progress",
+    "handoff"
+   ],
+   "goal": "G3"
+  },
+  {
+   "q": "预览表要显示哪些列？",
+   "why": "agent 停在这里等你",
+   "default": "书名、作者、ISBN",
+   "for": [
+    "progress",
+    "handoff"
+   ]
+  }
+ ],
+ "site": {
+  "checked": "2026-09-28T03:18:00Z",
+  "items": [
+   {
+    "id": "1",
+    "what": "导入测试",
+    "state": "重跑：4 passed（UTF-8、GBK、日期、空行；没有测重复的书）",
+    "how": "在合成仓库下 pytest tests/test_importer.py"
+   },
+   {
+    "id": "2",
+    "what": "导入页",
+    "state": "没法现场看：合成仓库里没有页面代码；会话里只请求过状态码（200），页面内容没人在浏览器里看过",
+    "how": "查仓库 + 会话记录"
+   }
+  ]
+ },
+ "method": {
+  "how": "一个人读完整场会话（37 行）：先抽你的话，再逐段读 agent 的话和工具调用；清点了仓库里的 skill 和文档，看这次用了哪些；也读了你发起这次查看时说的话。",
+  "checks": "你的原话全部对过原文；测试在合成仓库里现场重跑过；导入页没法现场看，写明了",
+  "cost": "约 20 次调用",
+  "unread": []
+ },
+ "repo": "synthetic/repo",
+ "resources": [
+  {
+   "what": "一个导入类功能的 skill（shelf-import）",
+   "path": ".claude/skills/shelf-import/SKILL.md",
+   "used": "no",
+   "relevant": true,
+   "says": "导入按三段做：先要真实导出样本再写解析；去重规则先问用户；改页面前把流程草图发给用户确认。",
+   "note": "里面写的三段正好对上这次的三个问题：没看样本就写解析、去重到插话才问、页面没等确认就改。",
+   "refs": [
+    "file:.claude/skills/shelf-import/SKILL.md:3-5"
+   ]
+  },
+  {
+   "what": "测试 skill（shelf-testing）",
+   "path": ".claude/skills/shelf-testing/SKILL.md",
+   "used": "read",
+   "relevant": false,
+   "says": "跑书架的测试；新功能至少带一条失败路径的测试。",
+   "refs": [
+    "A:4",
+    "file:.claude/skills/shelf-testing/SKILL.md:3"
+   ]
+  },
+  {
+   "what": "数据模型文档",
+   "path": "docs/data-model.md",
+   "used": "no",
+   "relevant": false,
+   "says": "Book 表的字段；表结构变更要走迁移。",
+   "note": "这次没改表结构，读 models.py 就够了。",
+   "refs": [
+    "file:docs/data-model.md:3"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,267 @@
+{
+ "note": "Synthetic sentences an agent might write; gaps = how many clauses are real 'I have not done X' gaps. Written by hand, not from any real session. The first 30 tuned the filter; the next 20 were a held-out set (precision 0.71 before, then used for tuning); the last 15 were a second held-out set, never tuned on (precision 0.82, recall 1.0). known_miss marks the filter's known false positives there.",
+ "cases": [
+  {
+   "text": "规范第 3 条说：未核的结论要标「说法」。",
+   "gaps": 0
+  },
+  {
+   "text": "README 里面没有 TODO 了。",
+   "gaps": 0
+  },
+  {
+   "text": "未验证的假设都已经逐条验证过。",
+   "gaps": 0
+  },
+  {
+   "text": "集成测试还没测。",
+   "gaps": 1
+  },
+  {
+   "text": "没跑端到端测试，也没读 `templates/import.html` 现有的样式。",
+   "gaps": 2
+  },
+  {
+   "text": "还未验证浏览器里的实际效果。",
+   "gaps": 1
+  },
+  {
+   "text": "我没有读 config.yaml，只看了默认值。",
+   "gaps": 1
+  },
+  {
+   "text": "迁移脚本未跑，等你确认后再跑。",
+   "gaps": 1
+  },
+  {
+   "text": "所有接口都已测试过，没有失败。",
+   "gaps": 0
+  },
+  {
+   "text": "原则：没核对过的数字不能进报告。",
+   "gaps": 0
+  },
+  {
+   "text": "要不要先跑一下性能测试？",
+   "gaps": 0
+  },
+  {
+   "text": "性能部分 unverified，只是估算。",
+   "gaps": 1
+  },
+  {
+   "text": "I haven't read the migration guide yet.",
+   "gaps": 1
+  },
+  {
+   "text": "All tests have already been verified on CI.",
+   "gaps": 0
+  },
+  {
+   "text": "The rule is: untested code must not ship.",
+   "gaps": 0
+  },
+  {
+   "text": "TODO: 处理空行。",
+   "gaps": 1
+  },
+  {
+   "text": "代码里已经没有 TODO 了，全部清掉。",
+   "gaps": 0
+  },
+  {
+   "text": "暂未核对导出的 CSV 编码。",
+   "gaps": 1
+  },
+  {
+   "text": "文档写着：未验证的改动不许合并。",
+   "gaps": 0
+  },
+  {
+   "text": "子 agent 报告：`parser.py` 的边界情况没测。",
+   "gaps": 1
+  },
+  {
+   "text": "我已经读完了 models.py，没发现问题。",
+   "gaps": 0
+  },
+  {
+   "text": "日期解析改好了，但 Windows 上没测试。",
+   "gaps": 1
+  },
+  {
+   "text": "有没有读过设计文档？",
+   "gaps": 0
+  },
+  {
+   "text": "这部分我没来得及验证。",
+   "gaps": 1
+  },
+  {
+   "text": "Not yet tested against the real database.",
+   "gaps": 1
+  },
+  {
+   "text": "按约定，未读的文件要列进缺口。",
+   "gaps": 0
+  },
+  {
+   "text": "回归测试已跑完，全部通过。",
+   "gaps": 0
+  },
+  {
+   "text": "没核对上游接口的限流，也没读错误码文档。",
+   "gaps": 2
+  },
+  {
+   "text": "去重逻辑写好了，测试覆盖还没跑。",
+   "gaps": 1
+  },
+  {
+   "text": "Everything is untested for now; I will test after lunch.",
+   "gaps": 1
+  },
+  {
+   "text": "登录流程改完了，移动端还没验证。",
+   "gaps": 1
+  },
+  {
+   "text": "没有读的文件：无。",
+   "gaps": 0
+  },
+  {
+   "text": "我核对了三处引用，第四处没核。",
+   "gaps": 1
+  },
+  {
+   "text": "上次说的未测分支现在都测过了。",
+   "gaps": 0
+  },
+  {
+   "text": "部署脚本未跑过生产环境。",
+   "gaps": 1
+  },
+  {
+   "text": "用户要求：未验证的结论不要写成事实。",
+   "gaps": 0
+  },
+  {
+   "text": "Did you read the spec?",
+   "gaps": 0
+  },
+  {
+   "text": "We did not verify the checksum.",
+   "gaps": 1
+  },
+  {
+   "text": "Checksums were verified already, nothing left.",
+   "gaps": 0
+  },
+  {
+   "text": "缓存失效那段逻辑我没测。",
+   "gaps": 1
+  },
+  {
+   "text": "测试全绿，没有未跑的用例了。",
+   "gaps": 0
+  },
+  {
+   "text": "README 没读，直接看的代码。",
+   "gaps": 1
+  },
+  {
+   "text": "根据第 2 条，没验证的不算完成。",
+   "gaps": 0
+  },
+  {
+   "text": "TODO 清单已经清空。",
+   "gaps": 0
+  },
+  {
+   "text": "还有两个 TODO：错误提示和日志。",
+   "gaps": 1
+  },
+  {
+   "text": "API 返回值没核对文档，先按猜的写。",
+   "gaps": 1
+  },
+  {
+   "text": "是否需要验证 IE 兼容？",
+   "gaps": 0
+  },
+  {
+   "text": "接口文档我读过了，没有读的是 SDK 源码。",
+   "gaps": 1
+  },
+  {
+   "text": "这版没跑 lint。",
+   "gaps": 1
+  },
+  {
+   "text": "他说没测过，我查了一下确实测过。",
+   "gaps": 0
+  },
+  {
+   "text": "支付回调我还没核对签名校验。",
+   "gaps": 1
+  },
+  {
+   "text": "签名校验已经核对过了。",
+   "gaps": 0
+  },
+  {
+   "text": "评审意见说：没测的代码不要合。",
+   "gaps": 0
+  },
+  {
+   "text": "数据迁移没跑，回滚方案也没验证。",
+   "gaps": 2
+  },
+  {
+   "text": "还需要读一下 `auth/session.ts` 吗？",
+   "gaps": 0
+  },
+  {
+   "text": "i18n 文案未核。",
+   "gaps": 1
+  },
+  {
+   "text": "当前没有未读的日志。",
+   "gaps": 0,
+   "known_miss": true
+  },
+  {
+   "text": "Haven't checked the rate limits.",
+   "gaps": 1
+  },
+  {
+   "text": "She said the build was untested, but CI shows it passed.",
+   "gaps": 0
+  },
+  {
+   "text": "截图没核对，先放着。",
+   "gaps": 1
+  },
+  {
+   "text": "按规范：未测试的函数要加注释。",
+   "gaps": 0
+  },
+  {
+   "text": "没读 CHANGELOG，所以不知道破坏性变更。",
+   "gaps": 1
+  },
+  {
+   "text": "全部 TODO 都处理完了。",
+   "gaps": 0,
+   "known_miss": true
+  },
+  {
+   "text": "文件上传大于 10MB 的情况没测。",
+   "gaps": 1
+  },
+  {
+   "text": "我读了一半文档，剩下的没读。",
+   "gaps": 1
+  }
+ ]
+}

@@ -12,3 +12,7 @@ state/
 *.jsonl.zstd
 conversations.json
 conversations.lock
+
+# Reviewed, fictional fixtures required by the v4.2 self-check; never real sessions.
+!skills/session-analysis/session-forensics-v4-2/examples/synthetic/session.jsonl
+!skills/session-analysis/session-forensics-v4-2/examples/synthetic/origin.jsonl
